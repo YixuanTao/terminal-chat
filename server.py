@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 @app.route('/message', methods=['POST'])
 def parse_message():
-    input_message = request.get_json()['data']
+    input_message = request.get_json()['data']['message']
     if input_message.startswith('/'):
         command, message = input_message.split(' ', 1)
         command = command[1:]
@@ -22,10 +22,3 @@ def parse_message():
 
 if __name__ == '__main__':
     app.run()
-
-
-# In[ ]:
-
-
-
-
