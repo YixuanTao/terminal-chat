@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  chatbot_parser:
+    build: .
+    ports:
+      - "5000:5000"
+    links:
+      - postgres_container
+
+  postgres_container:
+    image: postgres
+    environment:
+      POSTGRES_USER: example_user
+      POSTGRES_PASSWORD: example_password
+      POSTGRES_DB: chatbot
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+
+  email_server:
+    build:
+      context: .
+      dockerfile: Dockerfile-email
+    environment:
+      SENDGRID_API_KEY: <your_sendgrid_api_key_here>
+    depends_on:
+      - postgres_container
