@@ -1,0 +1,15 @@
+FROM python:3.8-slim-buster
+
+WORKDIR /usr/src/app
+
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+ENV DB_USER=postgres
+ENV DB_PASSWORD=mysecretpassword
+ENV DB_HOST=postgres_container
+ENV DB_NAME=chatbot
+
+CMD ["python", "chatbot_parser.py"]
