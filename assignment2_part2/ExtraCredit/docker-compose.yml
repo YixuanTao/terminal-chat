@@ -1,0 +1,42 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres
+    restart: always
+    container_name: postgres_container
+    environment:
+      POSTGRES_PASSWORD: example
+
+  chatbot_parser:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URI: postgresql://postgres:example@postgres/chatbot
+    ports:
+      - "8000:8000"
+
+  email_command:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    depends_on:
+      - redis
+      - worker
+    ports:
+      - "8001:8001"
+
+  redis:
+    image: redis
+    container_name: redis_container
+
+  worker:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.worker
+    depends_on:
+      - redis
+    environment:
+      SENDGRID_API_KEY: YOUR_SENDGRID_API_KEY_HERE
