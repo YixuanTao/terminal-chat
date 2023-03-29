@@ -1,0 +1,12 @@
+version: '3'
+services:
+  chatbot_parser:
+    build: ./chatbot_parser
+    ports:
+      - "5050:5050"
+  shrug_command_server:
+    build: ./shrug_command
+    ports:
+      - "5000:5000"
+    environment:
+      - SHRUG_API_URL=http://localhost:8000
