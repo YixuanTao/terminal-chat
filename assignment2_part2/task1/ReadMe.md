@@ -5,4 +5,4 @@ There are five files in total:
 2. chatbot_parser/requirements.txt
 3. Create a Dockerfile in the shrug_command folder.
 4. shrug_command/requirements.txt
-5. Create a docker-compose.yml file in the root directory of the project.
+5. Create a docker-compose.yaml file in the root directory of the project.
