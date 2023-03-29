@@ -1,12 +1,6 @@
 This is the explanation of Extra Credit Task.
 
-1.docker-compose.yml:
-	modified to include Redis and worker services.
-2.Dockerfile.worker:
-	new file for the worker service.
-3.worker.py:
-	new file for the worker service.
-4.email.py:
-	modified to use Redis and worker services.
-5.requirements.txt:
-	updated to include necessary packages for Redis and worker service.
+1.docker-compose.yml: add Redis and worker services.
+2.Dockerfile.worker: worker service Dockerfile.
+3.worker.py: worker service code.
+4.email_command/views.py: email command view code.
